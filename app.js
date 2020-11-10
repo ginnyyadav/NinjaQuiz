@@ -1,3 +1,9 @@
+/*
+This project calculates the score via the event listener
+which checks the correct answer array against the users
+answers and then outputs the answers up top with
+a small animation using the set interval method
+*/
 const correctAnswers = ['B', 'B', 'B', 'B'];
 const form = document.querySelector('.quiz-form');
 const result = document.querySelector('.result');
@@ -15,6 +21,18 @@ form.addEventListener('submit', e => {
         }
     });
 
-    result.querySelector('span').textContent = `${score}%`;
+    scrollTo(0,0);
     result.classList.remove('d-none');
+
+    let output = 0;
+    const timer = setInterval(() => {
+        result.querySelector('span').textContent = `${output}%`; 
+        if(output === score){
+            clearInterval(timer);
+        } else {
+            output++;
+        }   
+    }, 10);
 });
+
+
